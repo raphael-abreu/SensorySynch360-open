@@ -1,0 +1,7 @@
+FROM httpd:latest
+WORKDIR /usr/local/apache2/htdocs/
+COPY ./editor /usr/local/apache2/htdocs/editor/
+COPY ./presentation /usr/local/apache2/htdocs/presentation/
+COPY ./editor/httpd-dev.conf /usr/local/apache2/conf/httpd.conf
+EXPOSE 80
+CMD ["httpd-foreground"]

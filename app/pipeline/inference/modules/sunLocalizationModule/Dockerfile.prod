@@ -1,0 +1,7 @@
+FROM public.ecr.aws/lambda/python:3.9
+WORKDIR ${LAMBDA_TASK_ROOT}
+COPY ./BaseRecognitionModule.py ${LAMBDA_TASK_ROOT}
+COPY ./cubicObj_utils.py ${LAMBDA_TASK_ROOT}
+COPY ./sunLocalizationModule ${LAMBDA_TASK_ROOT}/sunLocalizationModule/
+RUN pip install -r ${LAMBDA_TASK_ROOT}/sunLocalizationModule/requirements.txt
+CMD [ "sunLocalizationModule/lambda_function.handler" ]

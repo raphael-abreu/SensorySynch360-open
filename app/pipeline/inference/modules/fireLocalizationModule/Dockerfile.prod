@@ -1,0 +1,7 @@
+FROM public.ecr.aws/lambda/python:3.9
+WORKDIR ${LAMBDA_TASK_ROOT}
+COPY ./BaseRecognitionModule.py ${LAMBDA_TASK_ROOT}
+COPY ./cubicObj_utils.py ${LAMBDA_TASK_ROOT}
+COPY ./fireLocalizationModule ${LAMBDA_TASK_ROOT}/fireLocalizationModule/
+RUN pip install -r ${LAMBDA_TASK_ROOT}/fireLocalizationModule/requirements.txt
+CMD [ "fireLocalizationModule/lambda_function.handler" ]

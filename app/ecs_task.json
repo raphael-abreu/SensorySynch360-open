@@ -1,0 +1,127 @@
+{
+    "containerDefinitions": [
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "raphael0abreu/s360:aws",
+            "name": "aws-module"
+        },
+        {
+            "essential": true,
+            "image": "raphael0abreu/s360:editor",
+            "name": "editor",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80
+                }
+            ]
+        },
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "raphael0abreu/s360:fire",
+            "name": "fire-module"
+        },
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "rabbitmq:management",
+            "name": "rabbitmq",
+            "portMappings": [
+                {
+                    "containerPort": 5672,
+                    "hostPort": 5672
+                },
+                {
+                    "containerPort": 15672,
+                    "hostPort": 15672
+                }
+            ]
+        },
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "redis:latest",
+            "name": "redis",
+            "portMappings": [
+                {
+                    "containerPort": 6379,
+                    "hostPort": 6379
+                }
+            ]
+        },
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "raphael0abreu/s360:rmq_consumer",
+            "name": "rmq-consumer"
+        },
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "raphael0abreu/s360:scene",
+            "name": "scene-module"
+        },
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "raphael0abreu/s360:sun",
+            "name": "sun-module"
+        },
+        {
+            "environment": [
+                {
+                    "name": "PYTHONUNBUFFERED",
+                    "value": "1"
+                }
+            ],
+            "essential": true,
+            "image": "raphael0abreu/s360:web",
+            "name": "web-server",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 8007
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": []
+}

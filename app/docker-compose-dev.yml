@@ -1,0 +1,159 @@
+version: '3'    
+
+networks:
+  my-network:
+
+services:
+  editor:
+    build:
+      context: ./
+      dockerfile: ./editor/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./editor:/usr/local/apache2/htdocs/editor
+      - ./presentation:/usr/local/apache2/htdocs/presentation
+    depends_on:
+      - web-server
+    networks:
+      - my-network
+    env_file:
+      - .env
+
+  web-server:
+    build:
+      context: ./pipeline
+      dockerfile: Dockerfile
+    ports:
+      - "8007:80"
+    volumes:
+      - ./pipeline:/app
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    environment:
+      - PYTHONUNBUFFERED=1
+
+      
+  aws-module:
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./awsLocalizationModule/Dockerfile
+    volumes:
+      - ./pipeline/inference/modules:/app
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+  fire-module:
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./fireLocalizationModule/Dockerfile
+    volumes:
+      - ./pipeline/inference/modules:/app
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+  scene-module:
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./sceneUnderstandingModule/Dockerfile
+    volumes:
+      - ./pipeline/inference/modules:/app
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+  sun-module:
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./sunLocalizationModule/Dockerfile
+    volumes:
+      - ./pipeline/inference/modules:/app
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      
+  rmq-consumer:
+    build:
+      context: ./pipeline/rmq-consumer
+      dockerfile: Dockerfile
+    volumes:
+      - ./pipeline/rmq-consumer:/app
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: on-failure
+    networks:
+      - my-network
+    environment:
+      - PYTHONUNBUFFERED=1
+      
+  rabbitmq:
+    image: "rabbitmq:management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - my-network
+    healthcheck:
+      test: rabbitmq-diagnostics -q status
+      interval: 30s
+      timeout: 30s
+      retries: 3
+        
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    networks:
+      - my-network
+    environment:
+      - PYTHONUNBUFFERED=1

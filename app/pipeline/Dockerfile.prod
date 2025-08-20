@@ -1,0 +1,26 @@
+FROM python:3.9-slim
+WORKDIR /app
+
+COPY ./app.py .
+COPY ./start.sh .
+COPY ./uwsgi.ini .
+COPY ./inference/map.py ./inference/
+COPY ./inference/generate_timeline.py ./inference/
+
+# Update package lists and install required packages. Using cached method
+RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
+    --mount=target=/var/cache/apt,type=cache,sharing=locked \
+    rm -f /etc/apt/apt.conf.d/docker-clean \
+    && apt-get update && apt-get install -y \
+    nginx \
+    python3-dev \
+    build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* 
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+CMD ["./start.sh"]

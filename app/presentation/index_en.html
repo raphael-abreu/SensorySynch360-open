@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Usability Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.2/reveal.min.css" />
+  <link rel="stylesheet" href="robot-lung.css" />
+  <style>
+    .mute-icon {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 32px;
+      cursor: pointer;
+      z-index: 1000;
+
+    }
+
+    .reveal section img {
+      margin: initial;
+      background: initial;
+      border: initial;
+      box-shadow: initial;
+    }
+
+    .button-63 {
+      align-items: center;
+      background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+      border: 0;
+      border-radius: 8px;
+      box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+      box-sizing: border-box;
+      color: #ffffff !important;
+      display: flex;
+      font-family: sans-serif;
+      font-size: 20px;
+      justify-content: center;
+      line-height: 1em;
+      max-width: 100%;
+      min-width: 140px;
+      padding: 19px 24px !important;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .button-63:active,
+    .button-63:hover {
+      outline: 0;
+      background-image: linear-gradient(144deg, #8530c3, #4130ab 50%, #068c95);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <!-- Wrap all slides in a single "slides" class -->
+    <div class="slides">
+      <!-- Each section element contains an individual slide -->
+      <!-- Nested sections produce vertically connected slides -->
+      <section id="title" data-auto-animate>
+        <img src="./logo.png" width="60%" style="margin-bottom: 50px" />
+
+        <p>
+          <small><strong>Testing the SensorySynch360 system for creating multisensory videos in virtual reality</strong></small>
+
+        </p>
+      </br>
+        <ul style="font-size: large">
+          <li>The test has an estimated duration of 40 minutes</li>
+          <li>Perform the test on a computer connected to the internet</li>
+          <li>Keep this window open throughout the test</li>
+          <li>The next slides contain audio. If you prefer to mute, click on the 🔊 icon above</li>
+          <li>Advance to the next slides using the ">" arrow or the keyboard.</li>
+      </ul>
+  
+      <p>
+          <small><em>Remember to fill out the test forms. Your opinion is valuable to us!</em></small>
+      </p>
+        <p data-id="a0" style="position:absolute; bottom: -500px;"></p>
+
+        <img  style="position:absolute; bottom: -200px;" data-id="a1">
+        <img  style="position:absolute; bottom: -200px;" data-id="a2">
+        <img  style="position:absolute; bottom: -200px;" data-id="a3">
+      </section>
+
+      <section data-state="begin" data-auto-animate>
+        <div style="display: flex; ">
+          <div style="flex: 1">
+            <p data-id="a0"  data-auto-animate-delay="10" > Multi Sensory VR</p>
+            <img  data-id="a1" data-auto-animate-delay="20" src="./calor.png" width="35%"></br>
+            <img  data-id="a2" data-auto-animate-delay="23" src="./vibracao.png" width="35%"></br>
+            <img  data-id="a3" data-auto-animate-delay="26" src="./aroma.png" width="35%">
+          </div>
+          <div style="flex: 3">
+            <video controls data-id="v" id="firstVideo" data-autoplay src="./apresentacao_en/1_intro.mp4"
+               ></video>
+          </div>
+        </div>
+        <div data-id="b1"></div>
+        <div data-id="b2"></div>
+        <div data-id="b3"></div>
+      </section>
+      <section data-auto-animate>
+        <div style="display: flex; ">
+          <div style="flex: 3">
+            <video controls data-id="v"  data-autoplay src="./apresentacao_en/2_applications.mp4"
+               ></video>
+          </div>
+          <div style="flex: 1">
+            <div data-id="b1" data-auto-animate-delay="2">
+              <img  src="./sand.jpg" width="80%" />
+            <small>Entertainment</small>
+          </div>
+          <div data-id="b2" data-auto-animate-delay="6">
+            <img  src="./kart.jpg" width="80%" />
+            <small>Simulation</small>
+          </div>
+          <div data-id="b3" data-auto-animate-delay="14">
+            <img src="./ovr.png" width="80%" />
+            <small>Education and Health</small>
+          </div>
+          </div>
+          <div data-id="j0"></div>
+          <div data-id="j1"></div>
+
+        </div>
+      </section>
+      <section data-auto-animate>
+        <div style="display:flex;">
+          <div  data-id="j0" data-auto-animate-delay="4" style="flex: 2"  >
+            <img  src="./feelies-vr-pod.jpg"/>
+          </div>
+          <div style="flex: 3" >
+            <video controls data-id="v" data-autoplay src="./apresentacao_en/3_experience.mp4"
+               ></video>
+              <div data-id="j1" data-auto-animate-delay="12" >              <img src="timeline.png" width="80%">
+              </div>
+          </div>
+        </div>
+        <div data-id="k1"></div>
+        <div data-id="k2"></div>
+
+      </section>
+
+      <section data-auto-animate>
+        <p data-id="j0" >Why aren't there that many VR applications?</p>
+        <div style="display:flex;">
+           <div style="flex: 3" >
+        <video data-id="v" data-autoplay src="./apresentacao_en/4_problems.mp4"></video>
+      </div>
+      <div style="flex: 1" >
+        <div data-id="k1" data-auto-animate-delay="4" ><p>1) it is hard</p></div>
+        <div data-id="k2" data-auto-animate-delay="10" ><p>2) it takes too long</p></div>
+        </div>
+
+      </div>
+
+
+      </section>
+
+      <section data-auto-animate="">
+        <div style="display: flex; ">
+          <div style="flex: 3">
+        <video data-id="v"  data-autoplay src="./apresentacao_en/5_ending.mp4"
+         ></video>
+          </div>
+          <div style="flex: 2"><img src="logo_ferramenta.png" alt="">
+            <img src="animation.gif" alt="">
+          </div>
+          
+
+          </div>
+
+
+      </section>
+      <section>
+        <h5>Usability Test Schedule</h5>
+        <ul>
+            <li><strike>Introduction</strike></li>
+            <li>Acceptance of the informed consent form</li>
+            <li>Initial questionnaire</li>
+            <li>Stage 1: system tutorial and one task</li>
+            <li>Questionnaire 1</li>
+            <li>Stage 2: new feature tutorial and one task</li>
+            <li>Questionnaire 2</li>
+            <li>Conclusion</li>
+        </ul>
+      </section>
+      <section style="text-align: left">
+        <h4>Informed Consent Form</h4>
+        <small>
+          You are invited to participate as a volunteer in the evaluation of an authoring system called
+          <i>SensorySynch360</i>, which was developed as part of research by student Raphael Abreu
+          for the postgraduate program at UFF.
+          </br></br>
+          <b>OBJECTIVE</b>: The main purpose of this study is to evaluate the user experience of the system.
+        </br>
+          <b>PROCEDURES</b>: <ul><li>You will perform actions in the system to annotate videos with sensory effects.
+           </li><li>We will also present 3 questionnaires for you to evaluate your experience with the system.</li>
+           <li><b>Remember, your answers will not be used to evaluate you. You can cancel the test at any
+            time by closing this window.</b></li>
+            <li>The entire study will take no more than 50 minutes.</li>
+          </ul>
+          <b>IDENTITY CONFIDENTIALITY</b>: <ul><li>No questions will be asked about your identity.</li><li><b>By accepting to participate,
+            you will receive a unique identifier to be used in the study. This identifier
+            will be displayed at the top of the page.</b></li>
+          <li>The data obtained in the study is confidential and will not be disclosed at an individual level.</li>
+          </br>
+        </ul>
+        </small>
+        <label><input type="checkbox" style="transform: scale(2)" id="checkTcle" /> I acknowledge the nature of my involvement and willingly provide my consent to participate.</label>
+      </section>
+      <section data-state="tcle">
+        <p>Thank you! Proceed to the questionnaire below:</p>
+        <a href="" target="_blank" id="quest-0" class="button-63">Open pre-questionnaire</a>
+        <small>It is estimated an average of 1 minute to complete this questionnaire</small>
+
+        <p>Once you have finished, advance to the next slide</p>
+      </section>
+      <section>
+        <h4>Stage 1</h4>
+        <p>In this phase, you will learn to use our system and then perform one authoring task.</p>
+      </section>
+      <section>
+        <p>First, follow the tutorial below.</p>
+        <a href="" target="_blank" id="tutorial-1" class="button-63">Open tutorial 1</a>
+        <small>It is estimated an average of 5 minutes to complete this tutorial</small>
+        <p>Once you have finished, advance to the next slide</p>
+      </section>
+      <section style="text-align: left">
+        <h4>How to perform the tasks:</h4>
+        <p>1) As soon as you open the system, you must click on the <strong>[Start test] </strong> button to start the task and a video will be loaded automatically</p>
+      <p>2) Hover over the button in the middle of the screen labeled <strong>[Task 1]</strong> to read the test description.</p>
+        <p><strong>Attention</strong>: Various sensory effects may be necessary for a complete experience, but it doesn't need to be too detailed! Only annotate according to what the task requires.</p>
+        <p>3) Click the <strong>[Finish test]</strong> button to finish. <strong>Please: </strong> after [Finish test], wait for a confirmation message before closing the test tab</p>
+      </section>
+      <section>
+        <h1>Task 1</h1>
+        <p> <span data-task="task1"></span></p>
+        <a href="" data-task="task1" target="_blank" class="button-63">Open</a>
+        <small>It is estimated an average of 7 minutes to complete this task</small>
+        <p>Once you have finished, advance to the next slide</p>
+      </section>
+      <!--<section>
+        <h1>Task 2</h1>
+        <p> <span data-task="task2"></span></p>
+        <a href="" data-task="task2" target="_blank" class="button-63">Open</a>
+        <small>It is estimated an average of 7 minutes to complete this task</small>
+        <p>Once you have finished, advance to the next slide</p>
+      </section>-->
+      <section>
+        <h1>Questionnaire 1</h1>
+        <a href="" target="_blank" id="quest-1" class="button-63">Open</a>
+        <small>It is estimated an average of 2 minutes to complete this questionnaire</small>
+        <p>Once you have finished, advance to the next slide</p>
+      </section>
+      <section>
+        <h4>Stage 2</h4>
+        <p>In this phase, you will use a new feature! The automatic extraction of sensory effects.</p>
+        <p>The extraction uses a combination of artificial intelligence modules to identify types, locations, and
+            moments of activation of the effects</p>
+        <p>The goal is not for it to be fully automated, but for the automatic extraction to give a kickstart to
+            authoring. Some refinement may be necessary</p>
+      </section>
+      <section>
+        <h4>Stage 2</h4>
+        <p>Follow the tutorial below to understand the new feature</p>
+        <a href="" target="_blank" id="tutorial-2" class="button-63">Open tutorial</a>
+        <small>It is estimated an average of 3 minutes to complete this tutorial</small>
+        <p>Once you have finished, advance to the next slide</p>
+      </section>
+      <section>
+        <h1>Task 2</h1>
+    <p> <span data-task="task2"></span></p>
+    <a href="" data-task="task2" target="_blank" class="button-63">Open task</a>
+    <small>It is estimated an average of 7 minutes to complete this task</small>
+    <p>Once you have finished, advance to the next slide</p>
+      </section>
+      <!--<section>
+        <h1>Task 4</h1>
+        <p> <span data-task="task4"></span></p>
+        <a href="" data-task="task4" target="_blank" class="button-63">Open task</a>
+        <small>It is estimated an average of 7 minutes to complete this task</small>
+        <p>Once you have finished, advance to the next slide</p>
+      </section>-->
+      <section>
+        <h1>Questionnaire 2</h1>
+    <a href="" target="_blank" id="quest-2" class="button-63">Open</a>
+    <small>It is estimated an average of 3 minutes to complete this questionnaire</small>
+    <p>Once you have finished, advance to the next slide</p>
+      </section>
+      <section>
+        <h3>Thank you!</h3>
+
+    <p>We appreciate your participation in the test. If you have any questions or want to get in touch, you can use the
+        channels below.</p>
+
+    <p> <a href="mailto:raphael.s.abreu@gmail.com">raphael.s.abreu@gmail.com</a> / <a
+            href="https://raphael-abreu.github.io">raphael-abreu.github.io</a></p>
+          </br>
+
+        </br>
+        
+        <a class="github-button" href="https://github.com/raphael-abreu" data-size="large"
+          aria-label="Follow @raphael-abreu on GitHub">Follow @raphael-abreu</a>
+          <small><a href="https://www.linkedin.com/in/raphael-abreu" target="_blank"> <img src="linkedin.png" alt=""> </a></small>
+      </section>
+      
+    </div>
+    <div class="line top"
+      style="padding-left: 1em; color: white; display: flex; justify-content: space-between; align-items: center">
+      <span>ID: <span class="yourID"></span></span>
+      <small id="initTime" style="width: 25%"></small>
+    </div>
+    <div class="line bottom"
+      style="padding-left: 1em; color: white; display: flex; justify-content: center; align-items: center">
+      <small>Criado por
+        <a style="color: gold; font-weight: 600" href="https://raphael-abreu.github.io/" target="_blank">Raphael
+          Abreu</a>
+        - PhD Candidade @ UFF in Multimedia and Machine Learning Systems
+      </small>
+    </div>
+    <div class="line left"></div>
+    <div class="line right"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.2/reveal.js"></script>
+
+  <script  id="helper"  src="./main.js" data-lang="en" ></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

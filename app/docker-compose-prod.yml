@@ -1,0 +1,143 @@
+version: '3'    
+
+networks:
+  my-network:
+
+services:
+  editor:
+    image: 889659430914.dkr.ecr.us-east-1.amazonaws.com/s360:editor-latest
+    build:
+      context: ./
+      dockerfile: ./editor/Dockerfile.prod
+    ports:
+      - "80:80"
+    #depends_on:
+    #  - web-server
+    networks:
+      - my-network
+    env_file:
+      - .env
+
+  web-server:
+    image:  889659430914.dkr.ecr.us-east-1.amazonaws.com/s360:web-arm-latest
+    build:
+      context: ./pipeline
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8007:80"
+    env_file:
+      - .env
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MOCK_LAMBDA=True
+    platform: linux/arm64/v8
+
+  aws-module:
+    image:  889659430914.dkr.ecr.us-east-1.amazonaws.com/s360:aws-module-latest
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./awsLocalizationModule/Dockerfile.prod
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+  fire-module:
+    image:  889659430914.dkr.ecr.us-east-1.amazonaws.com/s360:fire-module-latest
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./fireLocalizationModule/Dockerfile.prod
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+  scene-module:
+    image:  889659430914.dkr.ecr.us-east-1.amazonaws.com/s360:scene-module-latest
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./sceneUnderstandingModule/Dockerfile.prod
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+  sun-module:
+    image:  889659430914.dkr.ecr.us-east-1.amazonaws.com/s360:sun-module-latest
+    build:
+      context: ./pipeline/inference/modules
+      dockerfile: ./sunLocalizationModule/Dockerfile.prod
+    depends_on:
+      - rabbitmq
+      - redis
+      - rmq-consumer
+    networks:
+      - my-network
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      
+  rmq-consumer:
+    image:  889659430914.dkr.ecr.us-east-1.amazonaws.com/s360:rmq-arm-latest
+    build:
+      context: ./pipeline/rmq-consumer
+      dockerfile: Dockerfile.prod
+    env_file:
+      - .env
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: on-failure
+    networks:
+      - my-network
+    environment:
+      - PYTHONUNBUFFERED=1
+    platform: linux/arm64/v8
+
+  rabbitmq:
+    image: "rabbitmq:management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - my-network
+    healthcheck:
+      test: rabbitmq-diagnostics -q status
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    environment:
+      - PYTHONUNBUFFERED=1
+        
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    networks:
+      - my-network
+    environment:
+      - PYTHONUNBUFFERED=1

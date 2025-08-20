@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.png-to-white{
+    filter: invert(98%) sepia(100%) saturate(0%) hue-rotate(322deg) brightness(104%) contrast(103%);
+}
+
+.bg-teal-600 {
+    background-color: #4FD1C5;
+  }
